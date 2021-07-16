@@ -73,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var data=await jsonDecode(r);
     print("total items are : ${data.length}");
     for(int i=0;i<data.length;i++){
+       if(i%100==0)
      await Future.delayed(Duration(microseconds: 1)); // just add this in loop to avoid freeze research complete
       print("Country count is ${i} ${CountryModel.fromJson(data[i]).name}");
     }
