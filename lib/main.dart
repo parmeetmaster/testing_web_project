@@ -1,9 +1,12 @@
+import 'dart:convert';
 import 'dart:isolate';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testing_web_project/controller/demo_controller.dart';
 import 'dart:js' as js;
+
+import 'package:testing_web_project/model/country_model.dart';
 
 
 void main(args) async{
@@ -65,7 +68,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() async{
     var r=   await js.context.callMethod('httpGet');
-    print(r);
+   // print("${jsonDecode(r)[0]}");
+    print("request called please wait...");
+    var data=await jsonDecode(r);
+    print("total items are : ${data.length}");
+    for(int i=0;i<data.length;i++){
+     await Future.delayed(Duration(microseconds: 1)); // just add this in loop to avoid freeze research complete
+      print("Country count is ${i} ${CountryModel.fromJson(data[i]).name}");
+    }
+
     setState(()  {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below

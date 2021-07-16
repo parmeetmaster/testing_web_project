@@ -10,5 +10,7 @@ function httpGet() {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", "https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json", false ); // false for synchronous request
     xmlHttp.send( null );
+
+
     return xmlHttp.responseText;
 }
