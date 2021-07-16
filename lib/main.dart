@@ -1,8 +1,12 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testing_web_project/controller/demo_controller.dart';
+import 'dart:js' as js;
 
-void main(args) {
+
+void main(args) async{
 
 
   runApp(MyApp());
@@ -59,13 +63,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
+  void _incrementCounter() async{
+    var r=   await js.context.callMethod('httpGet');
+    print(r);
+    setState(()  {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
+     // js.context.callMethod('alertMessage', ['Flutter is calling upon JavaScript!']);
+      //https://fireship.io/snippets/using-js-with-flutter-web/
+
       _counter++;
     });
   }
@@ -89,10 +98,9 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (data) {
           return Center(
             child: Column(
-
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-               if(data.isloading.value==true)
+               if(data.isloading.value==false)
                 Image.asset("assets/tenor.gif"),
                 Text(
                   '$_counter',
