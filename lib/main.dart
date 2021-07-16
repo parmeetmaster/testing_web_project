@@ -86,7 +86,6 @@ class _MyHomePageState extends State<MyHomePage> {
         init: DemoController(),
         builder: (data) {
           return Center(
-
             child: Column(
 
               mainAxisAlignment: MainAxisAlignment.center,

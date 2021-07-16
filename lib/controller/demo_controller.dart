@@ -7,9 +7,10 @@ class DemoController extends GetxController {
   RxBool isloading = false.obs;
   CountryModel? model;
 
-  loadData() async* {
+  loadData() async {
     this.isloading.value = true;
-    model = await Api().getDemoData();
+    var response = await Api().getDemoData();
+  model=  CountryModel.fromJson(response.data);
     this.isloading.value = false;
     update();
   }

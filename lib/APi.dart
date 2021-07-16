@@ -10,7 +10,7 @@ class Api {
   getDemoData() async  {
     Dio dio=new Dio();
     var response=await dio.get("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json");
-    CountryModel.fromJson(response.data);
+   return response;
   }
 
 }

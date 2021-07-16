@@ -1,37 +1,36 @@
-// To parse this JSON data, do
-//
-//     final countryModel = countryModelFromJson(jsonString);
-
-import 'dart:convert';
+/// country : "AD"
+/// name : "Sant Julià de Lòria"
+/// lat : "42.46372"
+/// lng : "1.49129"
 
 class CountryModel {
-  CountryModel({
-    this.country,
-    this.name,
-    this.lat,
-    this.lng,
-  });
-
   String? country;
   String? name;
   String? lat;
   String? lng;
 
-  factory CountryModel.fromRawJson(String str) => CountryModel.fromJson(json.decode(str));
+  CountryModel({
+      this.country, 
+      this.name, 
+      this.lat, 
+      this.lng});
 
-  String toRawJson() => json.encode(toJson());
+  CountryModel.fromJson(dynamic json) {
+  try{
+    country = json["country"].toString();
+    name = json["name"].toString();
+    lat = json["lat"].toString();
+    lng = json["lng"].toString();
+  }catch(e){}
+  }
 
-  factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
-    country: json["country"],
-    name: json["name"],
-    lat: json["lat"],
-    lng: json["lng"],
-  );
+  Map<String, dynamic> toJson() {
+    var map = <String, dynamic>{};
+    map["country"] = country;
+    map["name"] = name;
+    map["lat"] = lat;
+    map["lng"] = lng;
+    return map;
+  }
 
-  Map<String, dynamic> toJson() => {
-    "country": country,
-    "name": name,
-    "lat": lat,
-    "lng": lng,
-  };
 }
