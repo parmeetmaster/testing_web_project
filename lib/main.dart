@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:testing_web_project/controller/demo_controller.dart';
 
-void main() {
+void main(args) {
+
+
   runApp(MyApp());
 }
 
